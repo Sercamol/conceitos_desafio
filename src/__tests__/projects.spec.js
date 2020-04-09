@@ -4,15 +4,13 @@ const { isUuid } = require("uuidv4");
 
 describe("Projects", () => {
   it("should be able to create a new repository", async () => {
-    const response = await request(app)
-      .post("/repositories")
-      .send({
+    let response = await request(app).post("/repositories").send({
         url: "https://github.com/Rocketseat/umbriel",
         title: "Umbriel",
         techs: ["Node", "Express", "TypeScript"]
       });
-
-    expect(isUuid(response.body.id)).toBe(true);
+    
+    expect( isUuid(response.body.id) ).toBe(true);
 
     expect(response.body).toMatchObject({
       url: "https://github.com/Rocketseat/umbriel",
